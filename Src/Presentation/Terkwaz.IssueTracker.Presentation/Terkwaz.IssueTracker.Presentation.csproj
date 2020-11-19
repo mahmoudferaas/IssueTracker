@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.App" PrivateAssets="none" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="8.5.0" PrivateAssets="none" />
+		<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2" PrivateAssets="all" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<ProjectReference Include="..\..\..\Src\Core\Terkwaz.IssueTracker.Application\Terkwaz.IssueTracker.Application.csproj" />
+		<ProjectReference Include="..\..\..\Src\Infrastructure\Terkwaz.IssueTracker.Persistence\Terkwaz.IssueTracker.Persistence.csproj" />
+		<ProjectReference Include="..\..\..\Src\Infrastructure\Terkwaz.IssueTracker.Infrastructure\Terkwaz.IssueTracker.Infrastructure.csproj" />
+	</ItemGroup>
+</Project>
