@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Terkwaz.IssueTracker.Application.Common;
+using Terkwaz.IssueTracker.Application.Common.Mappings;
 using Terkwaz.IssueTracker.Persistence.Common;
 using Terkwaz.IssueTracker.Presentation.Common;
 
@@ -22,7 +23,7 @@ namespace Terkwaz.IssueTracker.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest).AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining(typeof(I_DCDT_)));
+            services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining(typeof(MappingProfile)));
             services.AddApplication();
             services.AddPersistence(Configuration);
             services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>

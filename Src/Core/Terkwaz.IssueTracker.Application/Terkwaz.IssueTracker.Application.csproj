@@ -14,7 +14,4 @@
 		<PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.2.0" PrivateAssets="none" />
 		<ProjectReference Include="..\..\..\Src\Core\Terkwaz.IssueTracker.Domain\Terkwaz.IssueTracker.Domain.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Common\Interfaces\" />
-	</ItemGroup>
 </Project>

@@ -4,9 +4,12 @@
 		<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.App" PrivateAssets="none" />
-		<PackageReference Include="FluentValidation.AspNetCore" Version="8.5.0" PrivateAssets="none" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" PrivateAssets="none" />
 		<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 		<ProjectReference Include="..\..\..\Src\Core\Terkwaz.IssueTracker.Application\Terkwaz.IssueTracker.Application.csproj" />
 		<ProjectReference Include="..\..\..\Src\Infrastructure\Terkwaz.IssueTracker.Persistence\Terkwaz.IssueTracker.Persistence.csproj" />
