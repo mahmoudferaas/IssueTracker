@@ -11,6 +11,7 @@ namespace Terkwaz.IssueTracker.Domain.Entities
         public ICollection<ProjectParticipants> ProjectParticipants { get; set; }
         public ICollection<Issue> IssueReporters { get; set; }
         public ICollection<Issue> IssueAssignees { get; set; }
+        public ICollection<Project> Projects { get; set; }
 
     }
 }

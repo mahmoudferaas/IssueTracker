@@ -68,6 +68,12 @@ namespace Terkwaz.IssueTracker.Persistence
                       .HasForeignKey(pb => pb.IssueTypeId)
                       .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<Project>()
+                      .HasOne(pb => pb.Owner)
+                      .WithMany(p => p.Projects)
+                      .HasForeignKey(pb => pb.OwnerId)
+                      .OnDelete(DeleteBehavior.NoAction);
+
 
         }
     }

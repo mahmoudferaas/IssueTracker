@@ -24,7 +24,10 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Queries.GetAll
         {
             try
             {
-                var users = await _context.Users.ToListAsync();
+                var users = await _context.Users
+                    .Include(a=>a.Projects)
+                    .Include(a=>a.IssueAssignees)
+                    .Include(a=>a.IssueReporters).ToListAsync();
 
                 return _mapper.Map<List<UserOutput>>(users);
             }

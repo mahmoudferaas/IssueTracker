@@ -9,7 +9,7 @@ namespace Terkwaz.IssueTracker.Application.Common.Dtos
         public string Key { get; set; }
         public int OwnerId { get; set; }
         public UserDto Owner { get; set; }
-        public List<ProjectParticipantsDto> ProjectParticipants { get; set; }
+        //public List<ProjectParticipantsDto> ProjectParticipants { get; set; }
         public List<IssueDto> Issues { get; set; }
     }
 }

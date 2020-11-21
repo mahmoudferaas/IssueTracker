@@ -24,7 +24,7 @@ namespace Terkwaz.IssueTracker.Application.Features.Projects.Queries.GetAll
         {
             try
             {
-                var projects = await _context.Projects.ToListAsync();
+                var projects = await _context.Projects.Include(a=>a.Owner).Include(a=>a.Issues).ToListAsync();
 
                 return _mapper.Map<List<ProjectDto>>(projects);
             }
