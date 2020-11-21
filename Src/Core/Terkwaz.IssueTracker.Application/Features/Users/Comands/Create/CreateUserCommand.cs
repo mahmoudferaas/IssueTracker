@@ -8,8 +8,5 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Create
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        //public ICollection<ProjectParticipants> ProjectParticipants { get; set; }
-        //public ICollection<Issue> IssueReporters { get; set; }
-        //public ICollection<Issue> IssueAssignees { get; set; }
     }
 }

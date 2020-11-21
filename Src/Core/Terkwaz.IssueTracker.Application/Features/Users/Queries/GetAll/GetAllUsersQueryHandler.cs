@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Common.Interfaces;
@@ -8,7 +9,7 @@ using Terkwaz.IssueTracker.Application.Features.Users.Comands.Dtos;
 
 namespace Terkwaz.IssueTracker.Application.Features.Users.Queries.GetAll
 {
-    public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, GetAllUsersOutput>
+    public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserOutput>>
     {
         private readonly IIssueTrackerDbContext _context;
         private readonly IMapper _mapper;
@@ -19,13 +20,13 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Queries.GetAll
             _mapper = mapper;
         }
 
-        public async Task<GetAllUsersOutput> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserOutput>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 var users = await _context.Users.ToListAsync();
 
-                return _mapper.Map<GetAllUsersOutput>(users);
+                return _mapper.Map<List<UserOutput>>(users);
             }
             catch (System.Exception ex)
             {

@@ -22,6 +22,7 @@ namespace Terkwaz.IssueTracker.Application.Common.Mappings
 
 
 			CreateMap<CreateUserCommand, User>().ReverseMap();
+			CreateMap<UserOutput, User>().ReverseMap();
 
 			CreateMap<LoginOutput, User>().ReverseMap();
 
