@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Terkwaz.IssueTracker.Application.Common.Dtos
 {
-	public class Output
-	{
-
-			// Your Code Goes Here.
-
-	}
+    public class Output
+    {
+        public bool Status { get; set; }
+        public string ErrorMessage { get; set; }
+    }
 }

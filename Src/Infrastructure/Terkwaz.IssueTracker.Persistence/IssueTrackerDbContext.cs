@@ -62,11 +62,6 @@ namespace Terkwaz.IssueTracker.Persistence
                 .HasConstraintName("Issue_ProjectId_FK");
             });
 
-            //modelBuilder.Entity<Issue>()
-            //          .HasOne(pb => pb.Project)
-            //          .WithMany(p => p.Issues)
-            //          .HasForeignKey(pb => pb.ProjectId);
-
             modelBuilder.Entity<Issue>()
                       .HasOne(pb => pb.IssueType)
                       .WithMany(p => p.Issues)
