@@ -4,18 +4,18 @@ using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
 using Terkwaz.IssueTracker.Application.Common.Interfaces;
 
-namespace Terkwaz.IssueTracker.Application.Features.Projects.Commands.Delete
+namespace Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Delete
 {
-    public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand, Output>
+    public class DeleteProjectParticipantsCommandHandler : IRequestHandler<DeleteProjectParticipantsCommand , Output>
     {
         private readonly IIssueTrackerDbContext _context;
 
-        public DeleteProjectCommandHandler(IIssueTrackerDbContext context)
+        public DeleteProjectParticipantsCommandHandler(IIssueTrackerDbContext context)
         {
             _context = context;
         }
 
-        public async Task<Output> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
+        public async Task<Output> Handle(DeleteProjectParticipantsCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,9 +23,6 @@ namespace Terkwaz.IssueTracker.Application.Features.Projects.Commands.Delete
 
                 if (project == null)
                     return new Output { Status = false, ErrorMessage = "Project dosn't exist." };
-
-                if (project.OwnerId != request.OwnerId)
-                    return new Output { Status = false, ErrorMessage = "You aren't not owner of this project!." };
 
                 _context.Projects.Remove(project);
 

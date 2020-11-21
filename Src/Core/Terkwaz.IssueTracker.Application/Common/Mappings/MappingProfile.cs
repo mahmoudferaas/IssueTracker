@@ -3,6 +3,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
+using Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Create;
+using Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Update;
 using Terkwaz.IssueTracker.Application.Features.Projects.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.Users.Comands.Create;
 using Terkwaz.IssueTracker.Application.Features.Users.Comands.Dtos;
@@ -28,9 +30,13 @@ namespace Terkwaz.IssueTracker.Application.Common.Mappings
 
 			CreateMap<CreateProjectCommand, Project>().ReverseMap();
 			CreateMap<ProjectDto, Project>().ReverseMap();
+
+			CreateMap<CreateProjectParticipantsCommand, ProjectParticipants>().ReverseMap();
+			CreateMap<UpdateProjectParticipantsCommand, ProjectParticipants>().ReverseMap();
+
 		}
 
-	private void ApplyMappingsFromAssembly(Assembly assembly)
+		private void ApplyMappingsFromAssembly(Assembly assembly)
 		{
 			var types = assembly.GetExportedTypes().Where(t => t.GetInterfaces().Any(i =>i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>))).ToList();
 			foreach (var type in types)
