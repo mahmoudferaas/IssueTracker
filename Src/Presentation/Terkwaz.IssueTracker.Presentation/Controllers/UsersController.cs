@@ -9,7 +9,7 @@ using Terkwaz.IssueTracker.Presentation.Controllers;
 
 namespace Admins.Service.Managment.Presentation.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class UsersController : BaseController
     {
         [AllowAnonymous]
@@ -46,7 +46,7 @@ namespace Admins.Service.Managment.Presentation.Controllers
             }
         }
 
-        [HttpPost("GetAllUsers")]
+        [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAll([FromBody] GetAllUsersQuery command)
         {
             try
