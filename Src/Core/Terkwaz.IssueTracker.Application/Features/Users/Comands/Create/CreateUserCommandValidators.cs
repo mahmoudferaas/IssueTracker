@@ -7,7 +7,7 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Create
         public CreateUserCommandValidators()
         {
             RuleFor(x => x.FullName).NotEmpty();
-            RuleFor(x => x.Email).NotEmpty();
+            RuleFor(x => x.Email).NotEmpty().EmailAddress();
             RuleFor(x => x.Password).NotEmpty();
         }
     }

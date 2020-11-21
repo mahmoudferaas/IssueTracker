@@ -10,7 +10,7 @@ using Terkwaz.IssueTracker.Presentation.Controllers;
 namespace Admins.Service.Managment.Presentation.Controllers
 {
     [Authorize]
-    public class ActionsController : BaseController
+    public class UsersController : BaseController
     {
         [AllowAnonymous]
         [HttpPost("Register")]

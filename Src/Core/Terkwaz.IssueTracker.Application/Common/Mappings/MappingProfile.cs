@@ -2,6 +2,7 @@ using AutoMapper;
 using System;
 using System.Linq;
 using System.Reflection;
+using Terkwaz.IssueTracker.Application.Features.Projects.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.Users.Comands.Create;
 using Terkwaz.IssueTracker.Application.Features.Users.Comands.Dtos;
 using Terkwaz.IssueTracker.Domain.Entities;
@@ -13,7 +14,10 @@ namespace Terkwaz.IssueTracker.Application.Common.Mappings
 		public MappingProfile()
 		{
 			CreateMap<CreateUserCommand, User>().ReverseMap();
+
 			CreateMap<LoginOutput, User>().ReverseMap();
+
+			CreateMap<CreateProjectCommand, Project>().ReverseMap();
 		}
 
 	private void ApplyMappingsFromAssembly(Assembly assembly)

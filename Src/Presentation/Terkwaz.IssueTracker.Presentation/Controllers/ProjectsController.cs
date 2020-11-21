@@ -10,7 +10,7 @@ namespace Admins.Service.Managment.Presentation.Controllers
 {
     public class ProjectsController : BaseController
     {
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] CreateProjectCommand command)
         {
             try
