@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Create;
+using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Delete;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Update;
 using Terkwaz.IssueTracker.Presentation.Controllers;
 
@@ -29,6 +30,22 @@ namespace Admins.Service.Managment.Presentation.Controllers
 
         [HttpPut("UpdateIssue")]
         public async Task<IActionResult> Update([FromBody] UpdateIssueCommand command)
+        {
+            try
+            {
+                var output = await Mediator.Send(command);
+
+                return Ok(output);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        [HttpDelete("DeleteIssue")]
+        public async Task<IActionResult> Delete([FromBody] DeleteIssueCommand command)
         {
             try
             {

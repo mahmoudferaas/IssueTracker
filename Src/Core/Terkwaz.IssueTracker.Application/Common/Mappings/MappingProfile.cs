@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Create;
+using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Update;
 using Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Create;
 using Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Update;
 using Terkwaz.IssueTracker.Application.Features.Projects.Commands.Create;
