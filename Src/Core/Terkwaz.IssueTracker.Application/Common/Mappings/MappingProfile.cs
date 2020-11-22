@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
+using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Create;
 using Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Update;
 using Terkwaz.IssueTracker.Application.Features.Projects.Commands.Create;
@@ -33,6 +34,9 @@ namespace Terkwaz.IssueTracker.Application.Common.Mappings
 
 			CreateMap<CreateProjectParticipantsCommand, ProjectParticipants>().ReverseMap();
 			CreateMap<UpdateProjectParticipantsCommand, ProjectParticipants>().ReverseMap();
+
+			CreateMap<CreateIssueCommand, Issue>().ReverseMap();
+			CreateMap<UpdateIssueCommand, Issue>().ReverseMap();
 
 		}
 
