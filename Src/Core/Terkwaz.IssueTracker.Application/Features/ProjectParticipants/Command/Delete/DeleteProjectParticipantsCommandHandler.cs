@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
@@ -19,12 +20,26 @@ namespace Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.
         {
             try
             {
-                var project = _context.Projects.Find(request.Id);
+                var project = _context.Projects.Find(request.ProjectId);
 
                 if (project == null)
                     return new Output { Status = false, ErrorMessage = "Project dosn't exist." };
 
-                _context.Projects.Remove(project);
+                if (project.OwnerId != request.OwnerId)
+                    return new Output { Status = false, ErrorMessage = "You aren't not owner of this project!." };
+
+                foreach (var item in request.ParticipantEmails)
+                {
+                    var user = _context.Users.Where(a => a.Email == item).FirstOrDefault();
+                    if (user != null)
+                    {
+                        _context.ProjectParticipants.Remove(new Domain.Entities.ProjectParticipants
+                        {
+                            ParticipantId = user.Id,
+                            ProjectId = request.ProjectId
+                        });
+                    }
+                }
 
                 await _context.SaveChangesAsync(cancellationToken);
 

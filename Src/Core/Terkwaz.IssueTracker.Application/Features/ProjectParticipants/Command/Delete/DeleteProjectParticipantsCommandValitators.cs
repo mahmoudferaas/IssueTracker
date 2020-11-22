@@ -6,7 +6,9 @@ namespace Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.
     {
         public DeleteProjectParticipantsCommandValitators()
         {
-            RuleFor(x => x.Id).NotEmpty().NotNull();
+            RuleFor(x => x.ProjectId).NotEmpty().NotNull();
+            RuleFor(x => x.OwnerId).NotEmpty().NotNull();
+            RuleFor(x => x.ParticipantEmails).NotEmpty().NotNull();
         }
     }
 }
