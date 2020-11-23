@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Terkwaz.IssueTracker.Presentation.Controllers;
 
 namespace Admins.Service.Managment.Presentation.Controllers
 {
+    //[Authorize]
     public class ProjectParticipantsController : BaseController
     {
         [HttpPost("CreateProjectParticipants")]
@@ -59,12 +61,12 @@ namespace Admins.Service.Managment.Presentation.Controllers
             }
         }
 
-        [HttpGet("GetParticipantsOfProject")]
-        public async Task<IActionResult> GetAll([FromBody] GetAllProjectParticipantsQuery command)
+        [HttpPost("GetParticipantsOfProject")]
+        public async Task<IActionResult> GetAll([FromBody] GetAllProjectParticipantsQuery query)
         {
             try
             {
-                var output = await Mediator.Send(command);
+                var output = await Mediator.Send(query);
 
                 return Ok(output);
             }

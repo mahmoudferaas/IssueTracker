@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Delete;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Update;
+using Terkwaz.IssueTracker.Application.Features.Issues.Queries.GetIssuesByProject;
 using Terkwaz.IssueTracker.Presentation.Controllers;
 
 namespace Admins.Service.Managment.Presentation.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class IssuesController : BaseController
     {
         [HttpPost("CreateIssue")]
@@ -50,6 +51,22 @@ namespace Admins.Service.Managment.Presentation.Controllers
             try
             {
                 var output = await Mediator.Send(command);
+
+                return Ok(output);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        [HttpPost("GetAllIssues")]
+        public async Task<IActionResult> GetAll([FromBody] GetIssuesByProjectQuery query)
+        {
+            try
+            {
+                var output = await Mediator.Send(query);
 
                 return Ok(output);
             }

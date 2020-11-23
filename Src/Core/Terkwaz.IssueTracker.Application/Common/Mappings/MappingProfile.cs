@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
+using Terkwaz.IssueTracker.Application.Features.IsseTypes.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Update;
 using Terkwaz.IssueTracker.Application.Features.Issues.Dtos;
@@ -45,6 +46,9 @@ namespace Terkwaz.IssueTracker.Application.Common.Mappings
 				.ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.IssueType.Name))
 				.ForMember(dest => dest.Assignee, opt => opt.MapFrom(src => src.Assignee.FullName))
 				.ReverseMap();
+
+			CreateMap<CreateIssueTypeCommand, IssueType>().ReverseMap();
+
 
 		}
 
