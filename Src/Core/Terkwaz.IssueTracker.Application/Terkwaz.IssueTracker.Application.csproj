@@ -15,7 +15,4 @@
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
 		<ProjectReference Include="..\..\..\Src\Core\Terkwaz.IssueTracker.Domain\Terkwaz.IssueTracker.Domain.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Features\Issues\Queries\" />
-	</ItemGroup>
 </Project>

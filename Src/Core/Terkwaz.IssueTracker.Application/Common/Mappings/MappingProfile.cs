@@ -5,6 +5,7 @@ using System.Reflection;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Update;
+using Terkwaz.IssueTracker.Application.Features.Issues.Dtos;
 using Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Create;
 using Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Update;
 using Terkwaz.IssueTracker.Application.Features.Projects.Commands.Create;
@@ -38,6 +39,12 @@ namespace Terkwaz.IssueTracker.Application.Common.Mappings
 
 			CreateMap<CreateIssueCommand, Issue>().ReverseMap();
 			CreateMap<UpdateIssueCommand, Issue>().ReverseMap();
+
+
+			CreateMap<Issue , IssueOutputDto>()
+				.ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.IssueType.Name))
+				.ForMember(dest => dest.Assignee, opt => opt.MapFrom(src => src.Assignee.FullName))
+				.ReverseMap();
 
 		}
 
