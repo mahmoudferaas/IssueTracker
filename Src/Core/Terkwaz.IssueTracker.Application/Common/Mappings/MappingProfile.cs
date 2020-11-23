@@ -5,6 +5,7 @@ using System.Reflection;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
 using Terkwaz.IssueTracker.Application.Features.IsseTypes.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.IsseTypes.Commands.Update;
+using Terkwaz.IssueTracker.Application.Features.IsseTypes.Dtos;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Create;
 using Terkwaz.IssueTracker.Application.Features.Issues.Commands.Update;
 using Terkwaz.IssueTracker.Application.Features.Issues.Dtos;
@@ -48,6 +49,8 @@ namespace Terkwaz.IssueTracker.Application.Common.Mappings
 
             CreateMap<CreateIssueTypeCommand, IssueType>().ReverseMap();
             CreateMap<UpdateIssueTypeCommand, IssueType>().ReverseMap();
+
+            CreateMap<IssueTypesDto, IssueType>().ReverseMap();
         }
 
         private void ApplyMappingsFromAssembly(Assembly assembly)
