@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Features.IsseTypes.Commands.Create;
+using Terkwaz.IssueTracker.Application.Features.IsseTypes.Commands.Update;
 using Terkwaz.IssueTracker.Presentation.Controllers;
 
 namespace Admins.Service.Managment.Presentation.Controllers
@@ -24,21 +25,21 @@ namespace Admins.Service.Managment.Presentation.Controllers
             }
         }
 
-        //[HttpPut("UpdateIssueType")]
-        //public async Task<IActionResult> Update([FromBody] UpdateIssueTypeCommand command)
-        //{
-        //    try
-        //    {
-        //        var output = await Mediator.Send(command);
+        [HttpPut("UpdateIssueType")]
+        public async Task<IActionResult> Update([FromBody] UpdateIssueTypeCommand command)
+        {
+            try
+            {
+                var output = await Mediator.Send(command);
 
-        //        return Ok(output);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        throw;
-        //    }
-        //}
+                return Ok(output);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
         //[HttpDelete("DeleteIssueType")]
         //public async Task<IActionResult> Delete([FromBody] DeleteIssueTypeCommand command)
