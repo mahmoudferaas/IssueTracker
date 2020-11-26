@@ -11,10 +11,14 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Create
         public CreateUserCommandValidators(IIssueTrackerDbContext context)
         {
             _context = context;
+            RuleFor(x => x.Email).Must(UniqueEmail).WithMessage("This Email already exists.");
+        }
 
+        public CreateUserCommandValidators()
+        {
             RuleFor(x => x.FullName).NotEmpty();
-            RuleFor(x => x.Email).NotEmpty().EmailAddress().Must(UniqueEmail).WithMessage("This Email already exists."); 
-            RuleFor(x => x.Password).NotEmpty();
+            RuleFor(x => x.Email).NotEmpty().EmailAddress();
+            RuleFor(x => x.Password).NotEmpty().MinimumLength(5);
         }
 
         private bool UniqueEmail(string email)
@@ -23,10 +27,7 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Create
                                 .Where(x => x.Email == email)
                                 .FirstOrDefault();
 
-            if (user == null)
-                return true;
-
-            return false;
+            return user == null;
         }
     }
 }
