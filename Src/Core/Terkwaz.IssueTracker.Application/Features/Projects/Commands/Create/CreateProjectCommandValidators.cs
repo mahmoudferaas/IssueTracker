@@ -8,16 +8,20 @@ namespace Terkwaz.IssueTracker.Application.Features.Projects.Commands.Create
     {
         private readonly IIssueTrackerDbContext _context;
 
+        public CreateProjectCommandValidators()
+        {
+            RuleFor(x => x.Key).NotEmpty()
+                .Length(3,4).WithMessage("Key must be within 3 , 4 characters.")
+                .Matches("^[A-Z]*$").WithMessage("Key Must be Capital Letter.");
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.OwnerId).NotEmpty();
+        }
+
         public CreateProjectCommandValidators(IIssueTrackerDbContext context)
         {
             _context = context;
 
-            RuleFor(x => x.Key).NotEmpty()
-                .Length(3,4).WithMessage("Key must be within 3 , 4 characters.")
-                .Matches("^[A-Z]*$").WithMessage("Key Must be Capital Letter.")
-                .Must(UniqueKey).WithMessage("This key already exists.");
-            RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.OwnerId).NotEmpty();
+            RuleFor(x => x.Key).Must(UniqueKey).WithMessage("This key already exists.");
         }
 
         private bool UniqueKey(string Key)

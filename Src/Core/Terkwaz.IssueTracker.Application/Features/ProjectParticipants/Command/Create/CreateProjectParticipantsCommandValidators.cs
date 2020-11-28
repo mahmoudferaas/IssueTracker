@@ -2,9 +2,9 @@
 
 namespace Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.Create
 {
-    public class CreateProjectCommandValidators : AbstractValidator<CreateProjectParticipantsCommand>
+    public class CreateProjectParticipantsCommandValidators : AbstractValidator<CreateProjectParticipantsCommand>
     {
-        public CreateProjectCommandValidators()
+        public CreateProjectParticipantsCommandValidators()
         {
             RuleFor(x => x.ProjectId).NotEmpty().NotNull();
             RuleFor(x => x.ParticipantEmails).NotEmpty().NotNull();
