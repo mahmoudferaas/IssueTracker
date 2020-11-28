@@ -32,7 +32,7 @@ namespace Terkwaz.IssueTracker.Application.Features.Issues.Commands.Delete
             }
             catch (System.Exception ex)
             {
-                return new Output { Status = false, ErrorMessage = ex.Message };
+                //return new Output { Status = false, ErrorMessage = ex.Message };
                 throw;
             }
         }
