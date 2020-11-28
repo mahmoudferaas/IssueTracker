@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Common.Dtos;
+using Terkwaz.IssueTracker.Application.Common.Exceptions;
 using Terkwaz.IssueTracker.Application.Common.Interfaces;
 
 namespace Terkwaz.IssueTracker.Application.Features.IssueTypes.Commands.Delete
@@ -23,6 +25,10 @@ namespace Terkwaz.IssueTracker.Application.Features.IssueTypes.Commands.Delete
 
                 if (issue == null)
                     return new Output { Status = false, ErrorMessage = "issue dosn't exist." };
+
+                var hasIssues = _context.Issues.Any(o => o.IssueTypeId == issue.Id);
+                if (hasIssues)
+                    throw new DeleteFailureException(nameof(IsseTypes), request.Id, "There are existing Issues associated with this issueType.");
 
                 _context.IssueTypes.Remove(issue);
 

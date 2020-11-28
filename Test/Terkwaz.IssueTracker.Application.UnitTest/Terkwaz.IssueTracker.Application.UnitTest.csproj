@@ -17,7 +17,4 @@
 		<ProjectReference Include="..\..\Src\Core\Terkwaz.IssueTracker.Application\Terkwaz.IssueTracker.Application.csproj" />
 		<ProjectReference Include="..\..\Src\Infrastructure\Terkwaz.IssueTracker.Persistence\Terkwaz.IssueTracker.Persistence.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Users\Queries\" />
-	</ItemGroup>
 </Project>

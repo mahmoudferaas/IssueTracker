@@ -6,8 +6,8 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Login
     {
         public LoginCommandValidators()
         {
-            RuleFor(x => x.Email).NotEmpty();
-            RuleFor(x => x.Password).NotEmpty();
+            RuleFor(x => x.Email).NotEmpty().EmailAddress();
+            RuleFor(x => x.Password).NotEmpty().MinimumLength(5);
         }
     }
 }

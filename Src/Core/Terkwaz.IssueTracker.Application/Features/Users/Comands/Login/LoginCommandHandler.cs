@@ -10,9 +10,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Common;
+using Terkwaz.IssueTracker.Application.Common.Exceptions;
 using Terkwaz.IssueTracker.Application.Common.Helpers;
 using Terkwaz.IssueTracker.Application.Common.Interfaces;
 using Terkwaz.IssueTracker.Application.Features.Users.Comands.Dtos;
+using Terkwaz.IssueTracker.Domain.Entities;
 
 namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Login
 {
@@ -22,7 +24,7 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Login
         private readonly IMapper _mapper;
         private readonly AppSettings _appSettings;
 
-        public LoginCommandHandler(IIssueTrackerDbContext context, IMapper mapper , IOptions<AppSettings> appSettings)
+        public LoginCommandHandler(IIssueTrackerDbContext context, IMapper mapper, IOptions<AppSettings> appSettings)
         {
             _context = context;
             _mapper = mapper;
@@ -36,41 +38,49 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Login
                 if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
                     return await Task.FromResult<LoginOutput>(null);
 
-                request.Password = SecurityHelper.HashText(request.Password);
+                request.Password = SecurityHelper.Encrypt(request.Password);
 
                 // check if user exists
                 var userDB = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.Email && x.PasswordHash == request.Password);
 
                 if (userDB == null)
-                    return await Task.FromResult<LoginOutput>(null);
+                    throw new NotFoundException(nameof(User)); //return new LoginOutput { ErrorMessage = " User not found!.."} ;
 
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                    new Claim(ClaimTypes.Name, userDB.Id.ToString())
-                    }),
-                    Expires = DateTime.Now.AddDays(7),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                };
-
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-
-                var tokenString = tokenHandler.WriteToken(token);
-                
                 var userDto = _mapper.Map<LoginOutput>(userDB);
-                userDto.Token = tokenString;
+
+                userDto.Token = await GetToken(userDB);
 
                 // authentication successful
                 return userDto;
             }
             catch (System.Exception ex)
             {
+                //return new LoginOutput { ErrorMessage = ex.Message};
 
                 throw;
             }
+        }
+
+
+        public async Task<string> GetToken(User userDB)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, userDB.Id.ToString())
+                }),
+                Expires = DateTime.Now.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token);
         }
     }
 }

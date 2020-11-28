@@ -27,7 +27,7 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Comands.Create
                 var entity = _mapper.Map<User>(request);
 
                 if (!string.IsNullOrEmpty(request.Password))
-                    entity.PasswordHash = SecurityHelper.HashText(request.Password);
+                    entity.PasswordHash = SecurityHelper.Encrypt(request.Password);
 
                 _context.Users.Add(entity);
 

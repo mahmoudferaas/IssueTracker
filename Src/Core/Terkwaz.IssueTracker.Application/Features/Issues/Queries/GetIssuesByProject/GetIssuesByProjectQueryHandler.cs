@@ -26,7 +26,7 @@ namespace Terkwaz.IssueTracker.Application.Features.Issues.Queries.GetIssuesByPr
         {
             try
             {
-                var issues = await _context.Issues.WhereIf(request.AssigneeId != null, x => x.AssigneeId == request.AssigneeId)
+                var issues = await _context.Issues.WhereIf(request.AssigneeId != null , x => x.AssigneeId == request.AssigneeId)
                               .Where(x => x.ProjectId == request.ProjectId).Include(a => a.IssueType).Include(a => a.Assignee).ToListAsync();
 
                 return _mapper.Map<List<IssueOutputDto>>(issues);

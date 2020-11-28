@@ -5,6 +5,6 @@ namespace Terkwaz.IssueTracker.Application.Features.IssueTypes.Commands.Delete
 {
     public class DeleteIssueTypeCommand : IRequest<Output>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }

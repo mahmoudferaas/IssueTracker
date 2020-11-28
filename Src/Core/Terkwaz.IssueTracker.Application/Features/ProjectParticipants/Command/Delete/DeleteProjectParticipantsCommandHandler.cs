@@ -33,11 +33,10 @@ namespace Terkwaz.IssueTracker.Application.Features.ProjectParticipants.Command.
                     var user = _context.Users.Where(a => a.Email == item).FirstOrDefault();
                     if (user != null)
                     {
-                        _context.ProjectParticipants.Remove(new Domain.Entities.ProjectParticipants
-                        {
-                            ParticipantId = user.Id,
-                            ProjectId = request.ProjectId
-                        });
+                        var entity =_context.ProjectParticipants.Where(a => a.ParticipantId == user.Id && a.ProjectId == request.ProjectId).FirstOrDefault();
+
+                        if (entity != null)
+                            _context.ProjectParticipants.Remove(entity);
                     }
                 }
 

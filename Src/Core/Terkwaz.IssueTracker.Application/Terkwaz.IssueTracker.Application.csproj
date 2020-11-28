@@ -3,6 +3,9 @@
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Features\Projects\Commands\Delete\DeleteProjectCommandHandler.cs~RF42b7bd83.TMP" />
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="9.0.0" PrivateAssets="none" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" PrivateAssets="none" />
 		<PackageReference Include="FluentValidation" Version="8.5.0" PrivateAssets="none" />

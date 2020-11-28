@@ -5,7 +5,7 @@
         public string Id { get; set; }
         public string Type { get; set; }
         public string Title { get; set; }
-        public int Assignee { get; set; }
+        public string Assignee { get; set; }
         public string Parent { get; set; }
 
     }

@@ -22,7 +22,7 @@ namespace Terkwaz.IssueTracker.Application.Features.IsseTypes.Commands.Update
         {
             try
             {
-                var entity = _context.Issues.Find(request.Id);
+                var entity = _context.IssueTypes.Find(request.Id);
 
                 _mapper.Map(request, entity);
 

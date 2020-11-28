@@ -34,6 +34,8 @@ namespace Terkwaz.IssueTracker.Application.Features.Issues.Commands.Create
 
                 entity.Id = await GetIssueId(project);
 
+                _context.Issues.Add(entity);
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Output { Status = true };

@@ -25,6 +25,8 @@ namespace Terkwaz.IssueTracker.Application.Features.IsseTypes.Commands.Create
             {
                 var entity = _mapper.Map<IssueType>(request);
 
+                _context.IssueTypes.Add(entity);
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Output { Status = true };
