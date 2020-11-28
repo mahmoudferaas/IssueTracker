@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Terkwaz.IssueTracker.Application.Common.Interfaces;
 using Terkwaz.IssueTracker.Application.Features.Users.Comands.Dtos;
+using Terkwaz.IssueTracker.Domain.Entities;
 
 namespace Terkwaz.IssueTracker.Application.Features.Users.Queries.GetAll
 {
@@ -25,11 +26,13 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Queries.GetAll
             try
             {
                 var users = await _context.Users
-                    .Include(a=>a.Projects)
-                    .Include(a=>a.IssueAssignees)
-                    .Include(a=>a.IssueReporters).ToListAsync();
+                    .Include(a => a.Projects)
+                    .Include(a => a.IssueAssignees)
+                    .Include(a => a.IssueReporters).ToListAsync();
 
-                return _mapper.Map<List<UserOutput>>(users);
+                var result =  _mapper.Map<List<UserOutput>>(users);
+
+                return result;
             }
             catch (System.Exception ex)
             {
@@ -37,5 +40,23 @@ namespace Terkwaz.IssueTracker.Application.Features.Users.Queries.GetAll
                 throw;
             }
         }
+
+        //public async Task<List<User>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+        //{
+        //    try
+        //    {
+        //        var users = await _context.Users
+        //            .Include(a => a.Projects)
+        //            .Include(a => a.IssueAssignees)
+        //            .Include(a => a.IssueReporters).ToListAsync();
+
+        //        return users;
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+
+        //        throw;
+        //    }
+        //}
     }
 }

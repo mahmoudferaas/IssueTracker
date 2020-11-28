@@ -25,10 +25,10 @@ namespace Terkwaz.IssueTracker.Application.UnitTest.Users.Queries.GetAll
 
         [Theory]
         [NoRecursion]
-        public async Task Handle_GetAllQuery_ShouldReturnEntriesSuccessfully(UserOutput output)
+        public async Task Handle_GetAllQuery_ShouldReturnEntriesSuccessfully(List<UserOutput> output)
         {
             // Arrange
-            _mapperMock.Setup(m => m.Map<UserOutput>(It.IsAny<User>())).Returns(output); // AutoMapper setup
+            _mapperMock.Setup(m => m.Map<List<UserOutput>>(It.IsAny< List<User>>())).Returns(output); // AutoMapper setup
 
             var sut = new GetAllUsersQueryHandler(_context, _mapperMock.Object); // creating system under test
 
@@ -40,7 +40,7 @@ namespace Terkwaz.IssueTracker.Application.UnitTest.Users.Queries.GetAll
             var result = await sut.Handle(new GetAllUsersQuery(), CancellationToken.None);
 
             // Assert
-            result.Count().ShouldBe(1);
+            result.Count().ShouldBeGreaterThan(0);
         }
     }
 }
