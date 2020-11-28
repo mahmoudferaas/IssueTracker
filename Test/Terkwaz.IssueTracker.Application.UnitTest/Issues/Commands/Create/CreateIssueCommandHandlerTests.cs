@@ -24,11 +24,11 @@ namespace Terkwaz.IssueTracker.Application.UnitTest.Issues.Commands.Create
 
         [Theory]
         [NoRecursion]
-        public async Task Handle_ValidCommand_ShouldSaveEntriesSuccessfully(Issue Issue)
+        public async Task Handle_ValidCommand_ShouldSaveEntriesSuccessfully(Domain.Entities.Issue Issue)
         {
             _fixture.RepeatCount = 0;
             // Arrange
-            _mapperMock.Setup(m => m.Map<Issue>(It.IsAny<CreateIssueCommand>()))
+            _mapperMock.Setup(m => m.Map<Domain.Entities.Issue>(It.IsAny<CreateIssueCommand>()))
                .Returns(Issue); // AutoMapper setup
 
             var sut = new CreateIssueCommandHandler(_context, _mapperMock.Object); // creating system under test

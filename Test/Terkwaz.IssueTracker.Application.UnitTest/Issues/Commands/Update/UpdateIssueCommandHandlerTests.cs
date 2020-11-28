@@ -26,7 +26,7 @@ namespace Terkwaz.IssueTracker.Application.UnitTest.Issues.Commands.Update
         public async Task Handle_ValidCommand_ShouldUpdateEntriesSuccessfully()
         {
             //Create entity to inserted and update
-            var entity = _fixture.Create<Issue>();
+            var entity = _fixture.Create<Domain.Entities.Issue>();
 
             // Arrange
             var issue = await ContextOperation.CreateEntity(_context, entity);
@@ -35,7 +35,7 @@ namespace Terkwaz.IssueTracker.Application.UnitTest.Issues.Commands.Update
             issue.Title = _fixture.Create<string>();
 
             // AutoMapper setup
-            _mapperMock.Setup(m => m.Map(It.IsAny<UpdateIssueCommand>(), It.IsAny<Issue>())).Returns(issue);
+            _mapperMock.Setup(m => m.Map(It.IsAny<UpdateIssueCommand>(), It.IsAny<Domain.Entities.Issue>())).Returns(issue);
 
             // creating System Under Test
             var sut = new UpdateIssueCommandHandler(_context, _mapperMock.Object);

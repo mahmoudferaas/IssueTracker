@@ -27,7 +27,7 @@ namespace Terkwaz.IssueTracker.Application.UnitTest.Issues.Commands.Delete
             _fixture.RepeatCount = 0;
 
             //Create entity to inserted and delete it
-            var temIssue = _fixture.Create<Issue>();
+            var temIssue = _fixture.Create<Domain.Entities.Issue>();
 
             // Arrange
             var Issue = await ContextOperation.CreateEntity(_context, temIssue);

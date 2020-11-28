@@ -6,7 +6,7 @@ using Terkwaz.IssueTracker.Application.Features.Issues.Queries.GetIssuesByProjec
 using Terkwaz.IssueTracker.Application.UnitTest.Common;
 using Xunit;
 
-namespace Terkwaz.IssueTracker.Application.UnitTest.IssueTypes.Queries
+namespace Terkwaz.IssueTracker.Application.UnitTest.Issue.Queries
 {
     public class GetIssuesByProjectQueryValidatorTests : CommandTestBase
     {

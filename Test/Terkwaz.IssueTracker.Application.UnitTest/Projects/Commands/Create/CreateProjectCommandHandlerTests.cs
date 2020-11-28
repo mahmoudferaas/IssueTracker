@@ -31,14 +31,11 @@ namespace Terkwaz.IssueTracker.Application.UnitTest.Projects.Commands.Create
         {
             _fixture.RepeatCount = 0;
             // Arrange
-            _mapperMock.Setup(m => m.Map<Project>(It.IsAny<CreateProjectCommand>()))
-               .Returns(Project); // AutoMapper setup
+            _mapperMock.Setup(m => m.Map<Project>(It.IsAny<CreateProjectCommand>())).Returns(Project); // AutoMapper setup
 
             _mediatorMock.Setup(m => m.Publish(It.IsAny<CreateProjectParticipantsCommand>(), It.IsAny<CancellationToken>()));
 
             var sut = new CreateProjectCommandHandler(_context, _mapperMock.Object, _mediatorMock.Object); // creating system under test
-
-            var project = await ContextOperation.CreateEntity(_context, _fixture.Create<Project>());
 
             // Act
             var owner = _fixture.Create<User>();
